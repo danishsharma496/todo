@@ -1,89 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
-import Cd from './Cd';
-import { useState , useEffect } from 'react';
+import React from 'react';
+import Card from './Card';
 
-function App() {
+const App = () => {
+  // Populate post array with 10 more random values
+  const posts = [
+    { like: 32, user: "johny", caption: "Trust me at the top it isn't lonely" },
+    { like: 45, user: "Alice", caption: "Exploring new horizons" },
+    { like: 21, user: "Bob", caption: "Sunny days ahead" },
+    { like: 67, user: "Eva", caption: "Chasing dreams" },
+    { like: 12, user: "David", caption: "Enjoying the little things" },
+    { like: 98, user: "Sophia", caption: "Life is an adventure" },
+    { like: 53, user: "Michael", caption: "Making memories" },
+    { like: 76, user: "Olivia", caption: "Embracing spontaneity" },
+    { like: 34, user: "Liam", caption: "Discovering beauty in simplicity" },
+    { like: 55, user: "Emma", caption: "Finding joy in everyday moments" }
+  ];
 
-  const [input, setInput] = useState('');
-  const [rows, setRows] = useState([]);
-  const [filter, setFilter] = useState('All');
-
-  const handleEdit = (index) => {
-    const newText = prompt('Enter new text:', rows[index].text);
-    if (newText !== null) {
-      const updatedRows = [...rows];
-      updatedRows[index].text = newText;
-      setRows(updatedRows);
+  return (
+    <div>
+ 
+    {
+      posts.map((element,index)=>
+      <Card key={index} 
+      like={element.like}
+      user={element.user}
+      caption={element.caption}
+      comment={7}/>
+      )
     }
-  };
-
-  const handleDelete = (index) => {
-    const updatedRows = rows.filter((_, i) => i !== index);
-    setRows(updatedRows);
-  };
-
-  const handleToggleCheck = (index) => {
-    const updatedRows = [...rows];
-    updatedRows[index].isChecked = !updatedRows[index].isChecked;
-    setRows(updatedRows);
-  };
-
-  const handleInputChange = (e) => {
-    setInput(e.target.value);
-  };
-
-  const handleAddRow = () => {
-    if (input.trim() !== '') {
-      setRows([...rows, { text: input, isChecked: false }]);
-      setInput('');
-    }
-  };
-
-console.log(rows)
-
-const handleFilter = (type) => {
-  setFilter(type);
+    </div>
+  );
 };
-
-const filteredRows = () => {
-  switch (filter) {
-    case 'Done':
-      return rows.filter(row => row.isChecked);
-    case 'Pending':
-      return rows.filter(row => !row.isChecked);
-    default:
-      return rows;
-  }
-};
-
-return (
-  <div className="App">
-    <header className="App-header">
-      <div style={{ marginBottom: '10px' }}>
-        <input type="text" value={input} onChange={handleInputChange} style={{ marginRight: '10px' }} />
-        <button onClick={handleAddRow}>Add</button>
-      </div>
-      <div style={{ marginBottom: '10px' }}>
-        <button onClick={() => handleFilter('Done')}>Done</button>
-        <button onClick={() => handleFilter('All')}>All</button>
-        <button onClick={() => handleFilter('Pending')}>Pending</button>
-      </div>
-      {rows.map((row, index) => (
-        <Cd
-          key={index}
-          input={row.text}
-          isChecked={row.isChecked}
-          onEdit={() => handleEdit(index)}
-          onDelete={() => handleDelete(index)}
-          onToggleCheck={() => handleToggleCheck(index)}
-        />
-      ))}
-    </header>
-  </div>
-);
-}
 
 export default App;
-
-

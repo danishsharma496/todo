@@ -1,0 +1,54 @@
+/* styles.css */
+.card {
+    width: 800px; /* Card takes up 70% of screen width */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 0 auto; /* Center the card horizontally */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column; /* Arrange children vertically */
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    height: 15%; /* 1st div takes 15% of card's vertical space */
+  }
+  
+  .user-image {
+    width: 50px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .user-name {
+    font-weight: bold;
+  }
+  
+  .image-displayer {
+    flex: 1; /* Takes up remaining space */
+    margin-bottom: 10px;
+    overflow: hidden; /* Prevent images from overflowing */
+  }
+  
+  .like-comment-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+  }
+  
+  .post-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+  }
+  
+  .caption {
+    font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+    font-size: 16px;
+    color: #333; /* Adjust color as needed */
+  }
